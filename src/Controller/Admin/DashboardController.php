@@ -40,6 +40,11 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('TopAchat');
     }
 
+    public function configureUserMenu(UserInterface|User|\Symfony\Component\Security\Core\User\UserInterface $user): \EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu
+    {
+        return parent::configureUserMenu($user)->setAvatarUrl('/uploads/user/' . $user->getPicture());
+    }
+
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

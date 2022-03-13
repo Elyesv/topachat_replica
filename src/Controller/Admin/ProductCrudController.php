@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -34,8 +36,17 @@ class ProductCrudController extends AbstractCrudController
                 ]),
             TextField::new('stock'),
             MoneyField::new('price')->setCurrency('EUR'),
+            AssociationField::new('category'),
             TextEditorField::new('description'),
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('category')
+            ->add('price')
+            ;
     }
 
 }
