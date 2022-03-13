@@ -8,3 +8,8 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+
+!public/uploads/product/.gitkeep
+!public/uploads/productCategory/.gitkeep
+public/uploads
