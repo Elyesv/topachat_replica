@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -20,7 +22,7 @@ class DashboardController extends AbstractDashboardController
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(ProductCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(OrderCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -48,6 +50,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::section('Order');
+        yield MenuItem::linkToCrud('Order', 'fas fa-list', Order::class)->setAction(Crud::PAGE_INDEX);
         yield MenuItem::section('Product');
         yield MenuItem::linkToCrud('Product', 'fas fa-list', Product::class);
         yield MenuItem::section('Category');

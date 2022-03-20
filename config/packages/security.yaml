@@ -20,12 +20,9 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            access_denied_handler: App\Security\AccessForbiden
             custom_authenticator: App\Security\AppAuthenticator
             entry_point: App\Security\AppAuthenticator
-            form_login:
-                login_path: /login
-                default_target_path: /
-                always_use_default_target_path: true
             logout:
                 path: app_logout
                 # where to redirect after logout
