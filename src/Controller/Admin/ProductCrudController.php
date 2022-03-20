@@ -26,7 +26,7 @@ class ProductCrudController extends AbstractCrudController
             IdField::new('id')->setDisabled(),
             TextField::new('name'),
             ImageField::new('image')
-                ->setUploadDir('public/uploads/productCategory')
+                ->setUploadDir('public/uploads/product')
                 ->setBasePath('uploads/productCategory')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setFormTypeOptions([
@@ -37,7 +37,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('stock'),
             MoneyField::new('price')->setCurrency('EUR'),
             AssociationField::new('category'),
-            TextEditorField::new('description'),
+            TextField::new('description'),
         ];
     }
 

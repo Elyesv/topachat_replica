@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductCategory{% endblock %}
+
+{% block body %}
+    <main>
+        {% for category in product_categories %}
+        <div class="card" style="width: 18rem;">
+            {% if category.image is empty %}
+                <img class="card-img-top" src="https://dummyimage.com/286x180/b8b8b8/ffffff.png" alt="Card image cap">
+            {% else %}
+                <img class="card-img-top" src="{{ category.image }}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ category.name }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ path('app_product_category_show', {'id': category.id}) }}" class="btn btn-primary">See all product</a>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+    <style>
+
+        main{
+            display: flex;
+            width: 80%;
+            margin: 15px auto;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            margin: 15px;
+        }
+
+    </style>
+{% endblock %}

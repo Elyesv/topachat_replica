@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductCategory{% endblock %}
+
+{% block body %}
+    <div class="filter">
+        <a href="{{ path('app_product_category_show_asc', {'id': product_category.id}) }}"><button type="button" class="btn btn-primary">Price low to high</button></a>
+        <a href="{{ path('app_product_category_show_desc', {'id': product_category.id}) }}"><button type="button" class="btn btn-primary">Price high to low</button></a>
+    </div>
+
+
+    <main>
+
+        {% for product in products %}
+            <div class="card" style="width: 18rem;">
+                {% if product.image is empty %}
+                    <img class="card-img-top" src="https://dummyimage.com/286x180/b8b8b8/ffffff.png" alt="Card image cap">
+                {% else %}
+                    <img class="card-img-top" src="{{ product.image }}" alt="Card image cap">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h6 class="card-title">{{ product.price/100|round(2, 'floor') }}€, Left : {{ product.stock }} units</h6>
+                    <p class="card-text">{{ product.description }}</p>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-primary">See in details</a>
+                </div>
+            </div>
+        {% endfor %}
+    </main>
+
+    <style>
+
+        main{
+            display: flex;
+            width: 80%;
+            margin: 15px auto;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            margin: 15px;
+        }
+
+        .filter{
+            width: 65%;
+            margin: 15px auto;
+        }
+
+        .filter > button{
+            margin: 15px;
+        }
+
+    </style>
+
+{% endblock %}

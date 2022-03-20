@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <!-- Start Item Details -->
+    <section class="item-details section">
+        <div class="container">
+            <div class="top-area">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="product-images">
+                            <main id="gallery">
+                                {% if product.image is empty %}
+                                <div class="main-img">
+                                    <img src="https://dummyimage.com/515x348/b8b8b8/ffffff.png" id="current" alt="#">
+                                </div>
+                                {% else %}
+                                <div class="main-img">
+                                    <img src="../../uploads/product/{{ product.image }}" id="current" alt="#">
+                                </div>
+                                {% endif %}
+                                <div class="images">
+                                    <img src="https://dummyimage.com/92x66/b8b8b8/ffffff.png" class="img" alt="#">
+                                    <img src="https://dummyimage.com/92x66/b8b8b8/ffffff.png" class="img" alt="#">
+                                    <img src="https://dummyimage.com/92x66/b8b8b8/ffffff.png" class="img" alt="#">
+                                    <img src="https://dummyimage.com/92x66/b8b8b8/ffffff.png" class="img" alt="#">
+                                    <img src="https://dummyimage.com/92x66/b8b8b8/ffffff.png" class="img" alt="#">
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="product-info">
+                            <h2 class="title">{{ product.name }}</h2>
+                            <p class="category"><i class="lni lni-tag"></i><a href="{{ path('app_product_category_show', {'id': product.category.id}) }}">{{ product.category }}</a></p>
+                            <h3 class="price">{{ product.price/100|round(2, 'floor') }}€</h3>
+                            <p class="info-text">{{ product.description }}</p>
+
+                            <div class="bottom-content">
+                                <div class="row align-items-end">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="button cart-button">
+                                            <a href="{{ path('app_cart_add', {'id': product.id}) }}" style="width: 100%;"><button class="btn" >Add to Cart</button></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="wish-button">
+                                            <button class="btn"><i class="lni lni-reload"></i> Compare</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="wish-button">
+                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="other">
+                {% for prod in similar %}
+                <div class="card" style="width: 18rem;">
+                    {% if prod.image is empty %}
+                    <img class="card-img-top" src="https://dummyimage.com/286x180/b8b8b8/ffffff.png" alt="Card image cap">
+                    {% else %}
+                    <img class="card-img-top" src="../../uploads/product/{{ product.image }}" alt="Card image cap">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prod.name }}</h5>
+                        <h6 class="card-title"> {{ product.price/100|round(2, 'floor') }}€</h6>
+                        <p class="card-text">{{ prod.description }}</p>
+                        <a href="{{ path('app_product_show', {'id': prod.id}) }}" class="btn btn-primary">See in details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+
+    <style>
+        .other{
+            display: flex;
+        }
+        .card{
+            margin: 20px;
+        }
+
+    </style>
+
+
+{% endblock %}
