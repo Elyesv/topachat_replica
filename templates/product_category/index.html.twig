@@ -9,7 +9,7 @@
             {% if category.image is empty %}
                 <img class="card-img-top" src="https://dummyimage.com/286x180/b8b8b8/ffffff.png" alt="Card image cap">
             {% else %}
-                <img class="card-img-top" src="{{ category.image }}" alt="Card image cap">
+                <img style="width: 286px; height: 180px" class="card-img-top" src="../../uploads/productCategory/{{ category.image }}" alt="Card image cap">
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ category.name }}</h5>
