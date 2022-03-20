@@ -32,7 +32,7 @@ class AppController extends AbstractController
 
     public function header(
         ProductCategoryRepository $productCategoryRepository
-    )
+    ): Response
     {
         $categories = $productCategoryRepository->findAll();
 
@@ -42,7 +42,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    public function loader()
+    public function loader(): Response
     {
         return $this->render('partial/loader.html.twig', []);
     }
